@@ -1,0 +1,24 @@
+LCONF_VERSION = "7"
+
+BBPATH = "${TOPDIR}"
+BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) + '/../..')}"
+
+BBFILES ?= ""
+
+BBLAYERS ?= " \
+  ${BSPDIR}/layers/meta-yocto/meta-poky \
+  ${BSPDIR}/layers/openembedded-core/meta \
+  ${BSPDIR}/layers/meta-openembedded/meta-oe \
+  ${BSPDIR}/layers/meta-openembedded/meta-filesystems \
+  ${BSPDIR}/layers/meta-openembedded/meta-networking \
+  ${BSPDIR}/layers/meta-openembedded/meta-multimedia \
+  ${BSPDIR}/layers/meta-openembedded/meta-python \
+  \
+  ${BSPDIR}/layers/meta-security/meta-tpm \
+  \
+  ${BSPDIR}/layers/meta-freescale \
+  ${BSPDIR}/layers/meta-freescale-3rdparty \
+  ${BSPDIR}/layers/meta-freescale-distro \
+  \
+  ${BSPDIR}/layers/meta-mst-p41-bsp \
+"
