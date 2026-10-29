@@ -21,19 +21,40 @@ sh docker-build-image.sh
 sh docker-run.sh
 ```
 
-## Build the image
+## Initialize the build environment
 
 Inside the container, run:
 
 ```bash
 cd /work/yocto/scarthgap-mst
-MACHINE=mst-p41-imx8mp source init-build-env.sh mst-p41-build
+MACHINE=mst-p41-imx8mp DISTRO=mst-wayland source init-build-env.sh mst-p41-build
+```
+
+> **Note:** If `DISTRO` is not specified, Poky is used as the reference
+> distribution.
+
+## Build an image
+
+Two MST images are available:
+
+- `mst-image-minimal`: minimal image
+- `mst-image-develop`: development image
+
+Build the required image with BitBake, for example:
+
+```bash
 bitbake mst-image-minimal
+```
+
+or:
+
+```bash
+bitbake mst-image-develop
 ```
 
 ## Build output
 
-The generated files are available on the host and inside the container at:
+The generated image is available on the host and inside the container at:
 
 ```text
 /work/yocto/scarthgap-mst/mst-p41-build/tmp/deploy/images/mst-p41-imx8mp/

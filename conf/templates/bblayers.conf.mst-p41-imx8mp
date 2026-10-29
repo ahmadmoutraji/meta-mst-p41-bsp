@@ -21,4 +21,5 @@ BBLAYERS ?= " \
   ${BSPDIR}/layers/meta-freescale-distro \
   \
   ${BSPDIR}/layers/meta-mst-p41-bsp \
+  ${BSPDIR}/layers/meta-mst-distro \
 "

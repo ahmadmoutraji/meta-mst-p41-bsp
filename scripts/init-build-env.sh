@@ -61,8 +61,8 @@ fi
 
 # --- Case statement for config_file -------------------------------------
 case "$MACHINE" in
-    toradex-smarc-imx8mp|mst-p41-imx8mp)
-        config_file="$CONFIG_PATH/bblayers.conf.toradex-smarc-imx8mp"
+    mst-p41-imx8mp)
+        config_file="$CONFIG_PATH/bblayers.conf.mst-p41-imx8mp"
         ;;
     *)
         echo "Error: No config defined for MACHINE='$MACHINE'"
@@ -88,6 +88,15 @@ cp "$CONFIG_PATH/local.conf.sample" "$build_dir/conf/local.conf" || {
     echo "Failed to copy local config file."
     return 1
 }
+
+# --- Check if ditro is selected---------------------------------------------------------
+if [ -v DISTRO ]; then
+    echo "Selected Distro: $DISTRO"
+
+cat <<EOF >> $build_dir/conf/local.conf
+DISTRO = "$DISTRO"
+EOF
+fi
 
 cat <<EOF >> $build_dir/conf/local.conf
 MACHINE = "$MACHINE"
